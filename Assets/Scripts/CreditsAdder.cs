@@ -11,8 +11,12 @@ public class CreditsAdder : MonoBehaviour
 
     void Start()
     {
-        creditsAmount = 0;
-        creditsAmountLabel = GameObject.Find("YourBalanceText").GetComponent<Text>();
+        if (!PlayerPrefs.HasKey("Credits"))
+        {
+            PlayerPrefs.SetInt("Credits", 0);
+        }
+        creditsAmount = PlayerPrefs.GetInt("Credits");
+        creditsAmountLabel = GameObject.Find("CreditsAmountText").GetComponent<Text>();
     }
 
 
@@ -24,15 +28,18 @@ public class CreditsAdder : MonoBehaviour
     public void add5Credits()
     {
         creditsAmount += 5;
+        PlayerPrefs.SetInt("Credits", creditsAmount);
     }
 
     public void add50Credits()
     {
         creditsAmount += 50;
+        PlayerPrefs.SetInt("Credits", creditsAmount);
     }
 
     public void add500Credits()
     {
         creditsAmount += 500;
+        PlayerPrefs.SetInt("Credits", creditsAmount);
     }
 }
